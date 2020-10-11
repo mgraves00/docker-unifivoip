@@ -26,5 +26,6 @@ docker build --tag "unifivoip:$VER" .
 
 cat << EOF
 To start application do
-  docker run -p 1900:1900/udp -p 3478:3478/udp -p 9080:9080/tcp -p 9443:9443/tcp -p 10001:10001/udp --mount type=bind,source="\$(pwd)"/localdata,target=/data -d unifivoip:$VER
+  docker volume create unifivoip
+  docker run -p 1900:1900/udp -p 3478:3478/udp -p 9080:9080/tcp -p 9443:9443/tcp -p 10001:10001/udp -v unifivoip:/data -d unifivoip:$VER
 EOF
